@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Processed Submissions</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</head>
+<body>
+ <div class="container" style="padding: 5em">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-10">
+            <div class="row row-cols-1">
+                <div class="col">
+                    <h1 class="text-center" style="margin-bottom: 0.4em;">Processed Submissions</h1>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <p class="text-muted text-center">
+                                    Node <span class="badge rounded-pill" style="background-color: ${NODE_COLOR} !important;">${NODE_NAME}</span>
+                                </p>
+                            </div>
+                          <div class="col-sm">
+                                <p class="text-muted text-center">
+                                    Processed <span class="badge rounded-pill" style="background-color: ${NODE_COLOR} !important;">${FOR_NODE}</span>
+                                </p>
+                          </div>
+                          <div class="col-sm">
+                            <p class="text-muted text-center">
+                                Last @ <span class="badge rounded-pill" style="background-color: ${NODE_COLOR} !important;">${FOR_NODE_LAST}</span>
+                            </p>
+                          </div>
+                          <div class="col-sm">
+                            <p class="text-muted text-center">
+                                Session Messages <span class="badge rounded-pill bg-primary">${MESSAGES_SENT_TOTAL}</span>
+                            </p>
+                          </div>
+                          <div class="col-sm">
+                            <p class="text-muted text-center">
+                                My Session Messages <span class="badge rounded-pill bg-primary">${MESSAGES_SENT_TOTAL}</span>
+                            </p>
+                          </div>
+                          <div class="col-sm">
+                            <p class="text-muted text-center">
+                                Total Sessions <span class="badge rounded-pill bg-primary">${SESSION_COUNT}</span>
+                            </p>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <a href="/" class="btn btn-outline-primary" tabindex="-1" role="button">Go Back</a>
+                    </div>
+                    ${PLACEHOLDER}
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+ </div>
+</body>
+</html>

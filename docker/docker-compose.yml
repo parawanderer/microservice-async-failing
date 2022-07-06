@@ -1,0 +1,42 @@
+version: '3'
+services:
+  nginx:
+    build: nginx
+    ports:
+     - "8080:80"
+  postgres:
+    build: postgres
+    environment:
+      POSTGRES_PASSWORD: dbpass
+      POSTGRES_USER: dbuser
+  rabbitmq:
+    image: rabbitmq:3.9-management
+    ports:
+     - "15672:15672"
+  redis:
+    image: redis:7
+  sender:
+    build: ../microservice-async-failing/microservice-async-failing-sender
+    environment:
+      SESSION_SECRET: ${SESSION_SECRET}
+      SESSIONSTORE: redis
+      DBUSER: dbuser
+      DBPASS: dbpass
+      DATABASE: dbsender
+      DBHOST: postgres
+      QUEUENAME: messages
+      QUEUEURL: amqp://rabbitmq
+  receiver:
+    build: ../microservice-async-failing/microservice-async-failing-receiver
+    environment:
+      SESSION_SECRET: ${SESSION_SECRET}
+      SESSIONSTORE: redis
+      DBUSER: dbuser
+      DBPASS: dbpass
+      DATABASE: dbreceiver
+      DBHOST: postgres
+      QUEUENAME: messages
+      QUEUEURL: amqp://rabbitmq
+      PROCESSING_TIME_MAX: 5000
+      RANDOM_ERROR_CHANCE: 5
+      

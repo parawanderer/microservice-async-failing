@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Submissions</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</head>
+<body>
+ <div class="container" style="padding: 5em">
+     <div class="row">
+         <div class="col"></div>
+         <div class="col-10">
+            <div class="row row-cols-1">
+                <div class="col">
+                    <h1 class="text-center" style="margin-bottom: 0.4em;">Your Message Goes Here</h1>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm">
+                                <p class="text-muted text-center">
+                                    Node <span class="badge rounded-pill" style="background-color: ${NODE_COLOR} !important;">${NODE_NAME}</span>
+                                </p>
+                            </div>
+                          <div class="col-sm">
+                                <p class="text-muted text-center">
+                                    Processed <span class="badge rounded-pill" style="background-color: ${NODE_COLOR} !important;">${FOR_NODE}</span>
+                                </p>
+                          </div>
+                          <div class="col-sm">
+                            <p class="text-muted text-center">
+                                Last @ <span class="badge rounded-pill" style="background-color: ${NODE_COLOR} !important;">${FOR_NODE_LAST}</span>
+                            </p>
+                          </div>
+                          <div class="col-sm">
+                            <p class="text-muted text-center">
+                                My Session Messages <span class="badge rounded-pill bg-primary">${MESSAGES_SENT_TOTAL}</span>
+                            </p>
+                          </div>
+                          <div class="col-sm">
+                            <p class="text-muted text-center">
+                                Total Sessions <span class="badge rounded-pill bg-primary">${SESSION_COUNT}</span>
+                            </p>
+                          </div>
+                        </div>
+                    </div>
+                    <p class="text-muted text-center" style="margin-bottom: 2em;">Enter some text to submit your Message...</p>
+                </div>
+                <div class="col">
+                    <form method="post" action="/#success" autocomplete="off">
+                        <div class="input-group mb-3">
+                            <input type="text" id="order-input" name="message" class="form-control" placeholder="Your Message" aria-label="order" aria-describedby="button-submit">
+                            <button class="btn btn-primary" type="submit" id="button-submit" disabled>Submit Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+         </div>
+         <div class="col"></div>
+     </div>
+ </div>
+ <div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-8">
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a href="/reset-session" class="btn btn-outline-secondary" tabindex="-1" role="button">Reset Session</a>
+                <a href="/received" class="btn btn-outline-primary" tabindex="-1" role="button">Go to Results</a>
+              </div>
+              ${PLACEHOLDER}
+        </div>
+        <div class="col"></div>
+    </div>
+ </div>
+
+ <div class="modal fade" id="submittedModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal-dialog">
+         <div class="modal-content">
+             <div class="modal-header">
+                 <h5 class="modal-title" id="exampleModalLabel">Message Submitted</h5>
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+             </div>
+             <div class="modal-body">
+                 Your Message has been submitted successfully!
+             </div>
+             <div class="modal-footer">
+                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
+             </div>
+         </div>
+     </div>
+ </div>
+</body>
+<script src="./source.js"></script>
+</html>
