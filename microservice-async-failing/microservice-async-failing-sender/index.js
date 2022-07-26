@@ -18,6 +18,11 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const RedisStore = connectRedis(session);
 
+// Disclaimer: since this was a little test speedrun project, it doesn't have as much documentation
+// as I'd personally prefer to see in a real world multi-people project (or even for my own reference)
+// although it is all pretty self-contained and he function names mostly clarify what you might expect their
+// "contents" to do.
+
 
 const SERVICE_NAME = 'sender';
 const APP_PORT = 8080;
@@ -36,7 +41,7 @@ const {
 
 const INSTANCE_COLORS = ['#6666ff','#66b266','#ffc966','#ff6666','#b266b2','#26acff','#31e8ee', '#c1e06c', '#f49c4c', '#f787ce'];
 
-
+// in the real world this config could have been also provided through the environment variables
 log4js.configure({
     appenders: { out: { type: "stdout", layout: { type: "basic" } } },
     categories: { default: { appenders: ["out"], level: "trace" } },
@@ -88,7 +93,7 @@ const redisConnect = () => {
 
         const redisClient = redis.createClient({ 
             legacyMode: true,
-            url: `redis://${SESSIONSTORE}:6379`
+            url: `redis://${SESSIONSTORE}:6379` // in the real world: we could/should have made the port here settable too
         });
     
         logger.debug("Trying to connect to redis...");
@@ -185,7 +190,9 @@ const buildHome = async (req, res) => {
 
         const activeSessionCount = (await redisClient.v4.keys("sess:*"))?.length || 0; // this too is not particularly a great query to do in a real-world production environment!
     
-        const fileContents = fs.readFileSync(__dirname + '/html/home.html', 'utf8');
+        const fileContents = fs.readFileSync(__dirname + '/html/home.html', 'utf8');// since I'm adding clarifications anyway: reading entire files into memory instead of working 
+        // with a buffer & streaming to clients: also not great in the real world!
+
         if (fileContents) {
             
             // since I decided to share this code publically: this would clearly result in multiple loops/string modifications 
