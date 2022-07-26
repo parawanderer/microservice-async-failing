@@ -177,10 +177,15 @@ const buildHome = async (req, res) => {
         const rows = await getExistingMessages();
         const tableContents = generateRowsHtml(rows);
     
-        const activeSessionCount = (await redisClient.v4.keys("sess:*"))?.length || 0;
+        const activeSessionCount = (await redisClient.v4.keys("sess:*"))?.length || 0; // this too is not particularly a great query to do in a real-world production environment!
 
         const fileContents = fs.readFileSync(__dirname + '/html/home.html', 'utf8');
         if (fileContents) {
+
+            // since I decided to share this code publically: this would clearly result in multiple loops/string modifications 
+            // and is not very optimal, not easy to understand. In the real world I might've replaced this with something like pug.js
+            // or similar. But for this experiment project I figured this is ok
+
             res.send(fileContents.replace('${PLACEHOLDER}', tableContents)
                 .replace('${FOR_NODE}', processedCount)
                 .replace('${FOR_NODE_LAST}', lastProcessedAt ? lastProcessedAt.toUTCString() : 'Never')
@@ -211,7 +216,7 @@ const generateRowsHtml = (rows) => {
             <th scope="col">Processed in MS</th>
             <th scope="col">Submission</th>
         </tr>
-        </thead>`;
+        </thead>`; // and this too is not the best way to build templates: a templating lib would've been preferable in the real world!
 
 
     if (!rows || !rows.length) {
